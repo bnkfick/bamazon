@@ -1,4 +1,5 @@
 DROP DATABASE IF EXISTS bamazonDB; 
+
 CREATE database bamazonDB;
 
 USE bamazonDB;
@@ -34,9 +35,9 @@ VALUES ("iPad", "Electronics", 350.00, 10),
 ("T-Shirt", "Clothes", 15.00, 200),
 ("Jeans", "Clothes", 80.00, 40),
 
-("Ruby Earrings", "Jewelry", 4000.00, 20),
-("Ruby Ring", "Jewelry", 6000.00, 20),
-("Ruby Necklace", "Jewelry", 2000.00, 20),
+("Ruby Earrings", "Jewelry", 4000.00, 2),
+("Ruby Ring", "Jewelry", 6000.00, 1),
+("Ruby Necklace", "Jewelry", 2000.00, 2),
 
 ("Coffee", "Food", 9.99, 32),
 
