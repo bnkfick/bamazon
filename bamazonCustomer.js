@@ -2,6 +2,7 @@
 
 var mysql = require('mysql');
 var inquirer = require('inquirer');
+var Table = require('cli-table');
 
 //=================================Connect to SQL database===============================
 
@@ -34,6 +35,12 @@ function startPrompt() {
 
     }]).then(function (user) {
         if (user.confirm === true) {
+            console.log("================================= INVENTORY ===============================");
+            // instantiate
+            var table = new Table({
+                head: ['ID', 'Item', 'Department', 'Price', 'Stock'],
+                colWidths: [10, 30, 30, 30, 30]
+            });
 
             // VIEW INVENTORY //
             var sql = "SELECT * FROM products";
@@ -43,21 +50,31 @@ function startPrompt() {
                 if (err) throw err;
 
                 console.log('\nCurrent Bamazon Inventory: ');
-                console.log('....................\n');
+                //console.log('....................\n');
 
                 for (var i = 0; i < res.length; i++) {
                     //console.log(res[i]);
-                    console.log([
-                        res[i].item_id,
-                        res[i].product_name,
-                        res[i].department_name,
-                        res[i].price,
-                        res[i].stock_quantity
-                    ].join(" | "));
+                    // console.log([
+                    //     res[i].item_id,
+                    //     res[i].product_name,
+                    //     res[i].department_name,
+                    //     res[i].price,
+                    //     res[i].stock_quantity
+                    // ].join(" | "));
+
+                    var itemId = res[i].item_id,
+                        productName = res[i].product_name,
+                        departmentName = res[i].department_name,
+                        price = res[i].price,
+                        stockQuantity = res[i].stock_quantity;
+
+                    table.push(
+                        [itemId, productName, departmentName, price, stockQuantity]
+                    );
                 }
+                console.log(table.toString());
+                purchasePrompt();
             })
-            console.log("next?");
-            purchasePrompt();
         } else {
             console.log("Thank you! Come back soon!");
         }
@@ -86,25 +103,33 @@ function purchasePrompt() {
 function validateID(userInput) {
     var prodID = userInput;
     if (prodID) { prodID = userInput.trim(); }
-    var valid = true;
-    if (valid) {
-     //?
+    if (isNumeric) {
+        return true;
+    } else {
+        console.log("Please enter a valid ID NUMBER");
+        return false;
+    }
+
+}
+//check to see if the user input is a single letter
+function isNumeric(num) {
+    if (/^\d+$/.test(num)) {
+        //.log("test passed");
+        return true;
     } else {
         return false;
     }
-     
 }
 
 function validateQty(userInput) {
     var prodQty = userInput;
     if (prodQty) { prodQty = userInput.trim(); }
-    var valid = true;
-    if (valid) {
-     //?
+     if (isNumeric) {
+        return true;
     } else {
+        console.log("Please enter a valid NUMERIC QUANTITY");
         return false;
     }
-     
 }
 //=================================Item selection and Quantity desired===============================
 
@@ -112,43 +137,46 @@ function selectionPrompt() {
 
     inquirer.prompt([{
 
-            type: "input",
-            name: "inputId",
-            validate: validateID,
-            message: "Enter the ID# of the item you want to purchase.",
-        },
-        {
-            type: "input",
-            name: "inputNumber",
-            validate: validateQty,
-            message: "How many would you like to purchase?",
+        type: "input",
+        name: "inputId",
+        validate: validateID,
+        message: "Enter the ID# of the item you want to purchase.",
+    },
+    {
+        type: "input",
+        name: "inputNumber",
+        validate: validateQty,
+        message: "How many would you like to purchase?",
 
-        }
-    ]).then(function(userPurchase) {
+    }
+    ]).then(function (userPurchase) {
 
 
         var sql = "SELECT * FROM products WHERE item_id=?";
-        connection.query(sql, [userPurchase.inputId], function(err, res) {
+        connection.query(sql, [userPurchase.inputId], function (err, res) {
             for (var i = 0; i < res.length; i++) {
 
                 if (userPurchase.inputNumber > res[i].stock_quantity) {
 
                     console.log("===================================================");
-                    console.log("Sorry! Not enough in stock. Please try again later.");
+                    console.log("Sorry! Not enough in stock.");
+                    console.log(res[i].product_name + ": " + res[i].stock_quantity + " IN STOCK");
                     console.log("===================================================");
-                    startPrompt();
+                    
+                    //@todo prompt revise quantity
+                    selectionPrompt();
 
                 } else {
-                    console.log("===================================");
+                    console.log("===================================================");
                     console.log("You've selected:");
-                    console.log("----------------");
+                    console.log("---------------------------------------------------");
                     console.log("Item: " + res[i].product_name);
                     console.log("Department: " + res[i].department_name);
                     console.log("Price: " + res[i].price);
                     console.log("Quantity: " + userPurchase.inputNumber);
-                    console.log("----------------");
+                    console.log("---------------------------------------------------");
                     console.log("Total: " + res[i].price * userPurchase.inputNumber);
-                    console.log("===================================");
+                    console.log("===================================================");
 
                     var newQty = (res[i].stock_quantity - userPurchase.inputNumber);
                     var purchaseId = (userPurchase.inputId);
@@ -171,7 +199,7 @@ function confirmPrompt(newQty, purchaseId) {
         message: "Are you sure you want to purchase this item and quantity?",
         default: true
 
-    }]).then(function(userConfirm) {
+    }]).then(function (userConfirm) {
         if (userConfirm.confirmPurchase === true) {
 
             //if user confirms purchase, update mysql database with new stock quantity by subtracting user quantity purchased.
@@ -180,7 +208,7 @@ function confirmPrompt(newQty, purchaseId) {
                 stock_quantity: newQty
             }, {
                 item_id: purchaseId
-            }], function(err, res) {});
+            }], function (err, res) { });
 
             console.log("=================================");
             console.log("Transaction completed. Thank you.");
