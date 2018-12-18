@@ -2,7 +2,8 @@
 
 #### This is a node js CLI Amazon-like storefront with the MySQL. 
 * main execution of program is within 
-* bamazonCustomer.js and bamazonManager.js
+    * bamazonCustomer.js 
+    * bamazonManager.js
 
 ##### bamazonCustomer.js
 * This app taked in orders from customers and depleted stock from the store's inventory. 
