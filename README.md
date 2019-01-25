@@ -20,6 +20,8 @@
             * Update DB with new quantity 
             * show the customer the total cost of their purchase.
 
+![bamazonCustomer](bamazonCustomer.png)
+
 ##### bamazonManager.js
 * List a set of menu options:
     1. View Products for Sale
@@ -31,7 +33,7 @@
     4. Add New Product
         * allow the manager to add a completely new product to the store
 
-![bamazonCustomer](bamazonCustomer.png)
+
 ![bamazondManager](bamazonManager.png)
 
 #### Dependencies
