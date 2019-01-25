@@ -37,4 +37,6 @@
 ![bamazondManager](bamazonManager.png)
 
 #### Dependencies
+ * mysql
  * npm inquirer
+ * cli-table
