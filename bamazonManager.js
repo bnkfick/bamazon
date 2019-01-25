@@ -139,7 +139,7 @@ function addInventory() {
         type: "input",
         name: "inputId",
         validate: validateID,
-        message: "UPDATE ITEM QUANTITY: Enter the ID number of the item.",
+        message: "UPDATE ITEM with ID: Enter the ID number of the item.",
     },
     {
         type: "input",

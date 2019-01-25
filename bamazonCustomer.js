@@ -159,24 +159,24 @@ function selectionPrompt() {
                 if (userPurchase.inputNumber > res[i].stock_quantity) {
 
                     console.log("===================================================");
-                    console.log("Sorry! Not enough in stock.");
-                    console.log(res[i].product_name + ": " + res[i].stock_quantity + " IN STOCK");
+                    console.log("Sorry! Not enough in stock. Please try again later.");
+                    console.log(res[i].stock_quantity + res[i].stock_quantity + " IN STOCK");
                     console.log("===================================================");
                     
                     //@todo prompt revise quantity
-                    selectionPrompt();
+                    startPrompt();
 
                 } else {
-                    console.log("===================================================");
+                    console.log("===================================");
                     console.log("You've selected:");
-                    console.log("---------------------------------------------------");
+                    console.log("===================================");
                     console.log("Item: " + res[i].product_name);
                     console.log("Department: " + res[i].department_name);
                     console.log("Price: " + res[i].price);
                     console.log("Quantity: " + userPurchase.inputNumber);
-                    console.log("---------------------------------------------------");
+                    console.log("===================================");
                     console.log("Total: " + res[i].price * userPurchase.inputNumber);
-                    console.log("===================================================");
+                    console.log("===================================");
 
                     var newQty = (res[i].stock_quantity - userPurchase.inputNumber);
                     var purchaseId = (userPurchase.inputId);
