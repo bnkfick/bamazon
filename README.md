@@ -20,7 +20,7 @@
             * Update DB with new quantity 
             * show the customer the total cost of their purchase.
 
-![bamazonCustomer](bamazonCustomer.png)
+![bamazonCustomer](customer.webm)
 
 ##### bamazonManager.js
 * List a set of menu options:
