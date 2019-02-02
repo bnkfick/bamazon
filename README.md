@@ -20,6 +20,9 @@
             * Update DB with new quantity 
             * show the customer the total cost of their purchase.
 
+<br/>
+<img width="1000" alt="bAmazon Customer Animation" src="https://drive.google.com/file/d/1iSceqCpg2haD6mx42Uo8BYuL0psCE1UJ/view">
+<br/>
 ![bamazonCustomer](bamazonCustomer.png)
 
 ##### bamazonManager.js
