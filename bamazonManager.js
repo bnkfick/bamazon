@@ -1,18 +1,11 @@
-
-
 var mysql = require('mysql');
 var inquirer = require('inquirer');
 var Table = require('cli-table');
 
-
-
 var connection = mysql.createConnection({
     host: "localhost",
-
     port: 8889,
-
     user: "root",
-
     password: "root",
     database: "bamazonDB"
 });
@@ -31,18 +24,20 @@ function startPrompt() {
 
         type: "list",
         name: "actions",
-        message: "WELCOME MANAGER. What would you like to review?",
-        choices: ["View Products For Sale", "View Low Inventory", "Update Inventory", "Add New Product"]
+        message: "WELCOME SUPERVISOR. What would you like to review?",
+        choices: ["View Product Sales by Department", "Create New Department", ""]
 
     }]).then(function (user) {
-        if (user.actions === "View Products For Sale") {
+        if (user.actions === "View Product Sales by Department") {
             inventoryView();
-        } else if (user.actions === "View Low Inventory") {
+        } else if (user.actions === "Create New Department") {
             lowInventory();
-        } else if (user.actions === "Update Inventory") {
-            addInventory();
+        } else if (user.actions === "Exit") {
+            console.log("Come back soon!");
+            process.exit(0);
         } else {
-            addProduct();
+            console.log("Come back soon!");
+            process.exit(0);
         }
     });
 }

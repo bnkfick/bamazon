@@ -42,3 +42,22 @@ VALUES ("iPad", "Electronics", 350.00, 10),
 ("Coffee", "Food", 9.99, 32),
 
 ("Vanilla Candle", "Decor", 10.00, 77);
+
+CREATE TABLE departments(
+  department_id INT AUTO_INCREMENT NOT NULL,
+  department_name VARCHAR(45) NOT NULL,
+  over_head_costs DECIMAL(10,2) NOT NULL,
+  primary key(department_id)
+);
+
+SELECT * FROM departments;
+
+INSERT INTO departments (department_name, over_head_costs)
+VALUES ("Electronics", 200),
+  ("Kitchen", 100),
+  ("Games", 50),
+  ("Necessities", 300),
+  ("Clothes", 35),
+  ("Jewelry", 0),
+  ("Food", 1200),
+  ("Decor", 1000);
