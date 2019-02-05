@@ -21,9 +21,9 @@
             * show the customer the total cost of their purchase.
 
 <br/>
-<img width="1000" alt="bAmazon Customer Animation" src="https://drive.google.com/file/d/1iSceqCpg2haD6mx42Uo8BYuL0psCE1UJ/view">
+<a href="https://drive.google.com/file/d/1iSceqCpg2haD6mx42Uo8BYuL0psCE1UJ/view">See how the bamazon customer shops</a>
 <br/>
-![bamazonCustomer](bamazonCustomer.png)
+
 
 ##### bamazonManager.js
 * List a set of menu options:
