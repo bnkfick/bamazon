@@ -180,8 +180,10 @@ function selectionPrompt() {
 
                     var newQty = (res[i].stock_quantity - userPurchase.inputNumber);
                     var purchaseId = (userPurchase.inputId);
+                    var price = res[i].price;
+                    var productSales = res[i].product_sales;
                     //console.log(newQty);
-                    confirmPrompt(newQty, purchaseId);
+                    confirmPrompt(userPurchase.inputNumber, price, newQty, productSales, purchaseId);
                 }
             }
         });
@@ -190,7 +192,7 @@ function selectionPrompt() {
 
 //=================================Confirm Purchase===============================
 
-function confirmPrompt(newQty, purchaseId) {
+function confirmPrompt(purchaseQty, price, newQty, productSales, purchaseId) {
 
     inquirer.prompt([{
 
@@ -206,7 +208,11 @@ function confirmPrompt(newQty, purchaseId) {
 
             connection.query("UPDATE products SET ? WHERE ?", [{
                 stock_quantity: newQty
-            }, {
+            }, 
+            {
+                product_sales: productSales + (price * purchaseQty)
+            },
+            {
                 item_id: purchaseId
             }], function (err, res) { });
 
