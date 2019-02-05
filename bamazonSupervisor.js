@@ -85,38 +85,40 @@ function viewInventory() {
 function viewSales() {
 
     var table = new Table({
-        head: ['ID', 'Item', 'Department', 'Costs', 'Product Sales', 'Total Profit'],
+        head: ['ID', 'Department', 'Costs', 'Product Sales', 'Total Profit'],
         colWidths: [10, 30, 30, 30, 30]
     });
 
     console.log("================================= SALES ===============================");
     var table = new Table({
-        head: ['Dept ID', 'Dept Name', 'Department', 'Price', 'Stock'],
+        head: ['Dept ID', 'Dept Name', 'Department', 'Product Sales', 'Total Profit'],
         colWidths: [10, 30, 30, 30, 30]
     });
 
     var sql = " SELECT " +
-        "   d.department_id, " +
-        "   d.department_name, " +
-        "   d.over_head_costs, " +
+        "   departments.department_id, " +
+        "   departments.department_name, " +
+        "   departments.over_head_costs, " +
         "   SUM(products.product_sales) as product_sales, " +
-        "   (SUM(products.product_sales) - departments.over_head_cost)  - d.over_head_costs as total_profit " +
-        "FROM products p " +
-        "   RIGHT JOIN departments d ON p.department_name = d.department_name " +
+        "   (sum(products.product_sales) - departments.over_head_costs ) AS total_profits " +
+        "FROM products " +
+        "   RIGHT JOIN departments ON products.department_name = departments.department_name " +
         "GROUP BY " +
-        "   d.department_id, " +
-        "   d.department_name, " +
-        "   d.over_head_costs";
+        "   departments.department_id, " +
+        "   departments.department_name, " +
+        "   departments.over_head_costs";
 
     connection.query(sql
         , function (error, results) {
             if (error) throw error;
-            console.log(results);
-            table.push(
-                [results.department_id, productName, department_name, price, stockQuantity]
-            );
 
-
+            for (var i = 0; i < results.length; i++) {
+                
+                table.push(
+                    [results[i].department_id, results[i].department_name, results[i].over_head_costs, results[i].product_sales, results[i].total_profits]
+                );
+            }
+            console.log(table.toString());
             startPrompt();
         })
 };

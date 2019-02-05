@@ -19,7 +19,7 @@ var connection = mysql.createConnection({
 
 connection.connect(function (err) {
     if (err) throw err;
-    console.log("connected as id " + connection.threadId);
+    //console.log("connected as id " + connection.threadId);
 });
 
 //=================================Inquirer introduction===============================
@@ -77,6 +77,7 @@ function startPrompt() {
             })
         } else {
             console.log("Thank you! Come back soon!");
+            process.exit(0);
         }
     });
 }
@@ -95,7 +96,7 @@ function purchasePrompt() {
         if (user.purchase === true) {
             selectionPrompt();
         } else {
-            console.log("Thank you! Come back soon!");
+            startPrompt();
         }
     });
 }
@@ -160,7 +161,7 @@ function selectionPrompt() {
 
                     console.log("===================================================");
                     console.log("Sorry! Not enough in stock. Please try again later.");
-                    console.log(res[i].stock_quantity + res[i].stock_quantity + " IN STOCK");
+                    console.log(res[i].stock_quantity + " IN STOCK");
                     console.log("===================================================");
                     
                     //@todo prompt revise quantity
@@ -182,7 +183,7 @@ function selectionPrompt() {
                     var purchaseId = (userPurchase.inputId);
                     var price = res[i].price;
                     var productSales = res[i].product_sales;
-                    //console.log(newQty);
+                    console.log(newQty);
                     confirmPrompt(userPurchase.inputNumber, price, newQty, productSales, purchaseId);
                 }
             }
@@ -204,13 +205,21 @@ function confirmPrompt(purchaseQty, price, newQty, productSales, purchaseId) {
     }]).then(function (userConfirm) {
         if (userConfirm.confirmPurchase === true) {
 
-            //if user confirms purchase, update mysql database with new stock quantity by subtracting user quantity purchased.
+            console.log(price);
+            console.log(purchaseQty);
 
-            connection.query("UPDATE products SET ? WHERE ?", [{
+            if ( productSales === null ) { productSales = 0; }
+            console.log(productSales);
+
+            var calcProdSales = productSales + (price * purchaseQty);
+            console.log(calcProdSales);
+            //if user confirms purchase, update mysql database with new stock quantity by subtracting user quantity purchased.
+console.log(newQty);
+            connection.query("UPDATE products SET ?, ? WHERE ?", [{
                 stock_quantity: newQty
             }, 
             {
-                product_sales: productSales + (price * purchaseQty)
+                product_sales: calcProdSales
             },
             {
                 item_id: purchaseId

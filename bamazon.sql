@@ -10,7 +10,7 @@ CREATE TABLE products (
   department_name VARCHAR(100) NOT NULL,
   price DECIMAL(10,2) NOT NULL,
   stock_quantity INT (100) NOT NULL,
-product_sales DECIMAL(13,4) NULL,
+product_sales DECIMAL(13,4) DEFAULT 0,
   PRIMARY KEY (item_id)
 );
 
@@ -32,7 +32,7 @@ VALUES ("iPad", "Electronics", 350.00, 10),
 ("Battleship", "Games", 20.00, 100),
 ("Family Feud", "Games", 10.00, 100),
 
-("Sweatshirt", "Clothes", 30.00, 5),
+("Sweatshirt", "Clothes", 30.00, 20),
 ("T-Shirt", "Clothes", 15.00, 200),
 ("Jeans", "Clothes", 80.00, 40),
 
@@ -47,7 +47,7 @@ VALUES ("iPad", "Electronics", 350.00, 10),
 CREATE TABLE departments(
   department_id INT AUTO_INCREMENT NOT NULL,
   department_name VARCHAR(45) NOT NULL,
-  over_head_costs DECIMAL(10,2) NOT NULL,
+  over_head_costs DECIMAL(10,2) NOT NULL DEFAULT 0,
   primary key(department_id)
 );
 
@@ -60,5 +60,5 @@ VALUES ("Electronics", 200),
   ("Games", 50),
   ("Clothes", 35),
   ("Jewelry", 0),
-  ("Food", 1200),
-  ("Decor", 1000);
+  ("Food", 50),
+  ("Decor", 50);
