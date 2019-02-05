@@ -1,6 +1,10 @@
+
+
 var mysql = require('mysql');
 var inquirer = require('inquirer');
 var Table = require('cli-table');
+
+
 
 var connection = mysql.createConnection({
     host: "localhost",
@@ -24,20 +28,18 @@ function startPrompt() {
 
         type: "list",
         name: "actions",
-        message: "WELCOME SUPERVISOR. What would you like to review?",
-        choices: ["View Product Sales by Department", "Create New Department", ""]
+        message: "WELCOME MANAGER. What would you like to review?",
+        choices: ["View Products For Sale", "View Low Inventory", "Update Inventory", "Add New Product"]
 
     }]).then(function (user) {
-        if (user.actions === "View Product Sales by Department") {
+        if (user.actions === "View Products For Sale") {
             inventoryView();
-        } else if (user.actions === "Create New Department") {
+        } else if (user.actions === "View Low Inventory") {
             lowInventory();
-        } else if (user.actions === "Exit") {
-            console.log("Come back soon!");
-            process.exit(0);
+        } else if (user.actions === "Update Inventory") {
+            addInventory();
         } else {
-            console.log("Come back soon!");
-            process.exit(0);
+            addProduct();
         }
     });
 }
@@ -221,8 +223,10 @@ function addProduct() {
             department_name: newProduct.inputDepartment,
             price: newProduct.inputPrice,
             stock_quantity: newProduct.inputStock
-        }, function (err, res) { });
-        startPrompt();
+        }, function (err, res) { 
+            startPrompt();
+        });
+
     });
 }
 
