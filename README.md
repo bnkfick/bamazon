@@ -21,7 +21,9 @@
             * show the customer the total cost of their purchase.
 
 <br/>
-<a href="https://drive.google.com/file/d/1iSceqCpg2haD6mx42Uo8BYuL0psCE1UJ/view">See how the bamazon customer shops</a>
+<a href="https://drive.google.com/file/d/1iSceqCpg2haD6mx42Uo8BYuL0psCE1UJ/view">Click to see a video of the CLI bamazon customer experience</a>
+<a href="https://drive.google.com/file/d/1iSceqCpg2haD6mx42Uo8BYuL0psCE1UJ/view">
+<img src="https://raw.githubusercontent.com/bnkfick/bamazon/master/bamazonCustomer.png" alt="bamazon customer"</a>
 <br/>
 
 
@@ -37,7 +39,11 @@
         * allow the manager to add a completely new product to the store
 
 
-![bamazondManager](bamazonManager.png)
+
+<a href="https://drive.google.com/file/d/1jecS6xu2zlP7bnM2wnupIP1Ghf7cSHqB/view">Click to see the bamazon manager app at work</a>
+<img src="https://raw.githubusercontent.com/bnkfick/bamazon/master/bamazonManager.png" alt="bamazon manager"</a>
+<br/>
+
 
 #### Dependencies
  * mysql
