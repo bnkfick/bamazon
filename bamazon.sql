@@ -44,6 +44,7 @@ VALUES ("iPad", "Electronics", 350.00, 10),
 
 ("Vanilla Candle", "Decor", 10.00, 77);
 
+
 CREATE TABLE departments(
   department_id INT AUTO_INCREMENT NOT NULL,
   department_name VARCHAR(45) NOT NULL,
@@ -53,6 +54,9 @@ CREATE TABLE departments(
 
 SELECT * FROM departments;
 DELETE FROM departments;
+
+DROP TABLE IF EXISTS departments; 
+
 
 INSERT INTO departments (department_name, over_head_costs)
 VALUES ("Electronics", 200),

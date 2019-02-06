@@ -46,16 +46,13 @@ function startPrompt() {
 //=================================View Inventory===============================
 function viewInventory() {
 
-    var table = new Table({
-        head: ['ID', 'Item', 'Department', 'Price', 'Stock'],
-        colWidths: [10, 30, 30, 30, 30]
-    });
 
     console.log("================================= INVENTORY ===============================");
     var table = new Table({
         head: ['ID', 'Item', 'Department', 'Price', 'Stock'],
         colWidths: [10, 30, 30, 30, 30]
     });
+
 
     // VIEW INVENTORY //
     var sql = "SELECT * FROM products";
@@ -84,11 +81,6 @@ function viewInventory() {
 
 function viewSales() {
 
-    var table = new Table({
-        head: ['ID', 'Department', 'Costs', 'Product Sales', 'Total Profit'],
-        colWidths: [10, 30, 30, 30, 30]
-    });
-
     console.log("================================= SALES ===============================");
     var table = new Table({
         head: ['Dept ID', 'Dept Name', 'Department', 'Product Sales', 'Total Profit'],
@@ -113,9 +105,15 @@ function viewSales() {
             if (error) throw error;
 
             for (var i = 0; i < results.length; i++) {
-                
+                let psales = results[i].product_sales;
+                if ( psales === null ) psales = '0';
+                let profits = results[i].product_sales;
+                if ( profits === null ) profits = '0';
                 table.push(
-                    [results[i].department_id, results[i].department_name, results[i].over_head_costs, results[i].product_sales, results[i].total_profits]
+                    [results[i].department_id, results[i].department_name, 
+                    results[i].over_head_costs, 
+                    psales, 
+                    profits] 
                 );
             }
             console.log(table.toString());
