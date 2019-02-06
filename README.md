@@ -45,6 +45,20 @@
 <br/>
 
 
+##### bamazonSupervisor.js
+* List a set of menu options:
+    1. View Inventory
+        * list every available item: the item IDs, names, prices, and quantities
+    2. View Product Sales by Department
+        * list all departments, their sales and total profits
+    3. Add New Department
+        * allow the supervisor to add a new department and overhead costs
+
+<a href="https://drive.google.com/file/d/1pesM1MQJLe4n8e20QEV48GiPPZvcH2gI/view">Click to see the bamazon supervisor app at work</a>
+<img src="https://raw.githubusercontent.com/bnkfick/bamazon/master/bamazonSupervisor.png" alt="bamazon supervisor"</a>
+<br/>
+
+
 #### Dependencies
  * mysql
  * npm inquirer
