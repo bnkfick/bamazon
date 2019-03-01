@@ -23,7 +23,7 @@
 <br/>
 <a href="https://drive.google.com/file/d/1iSceqCpg2haD6mx42Uo8BYuL0psCE1UJ/view">Click to see a video of the CLI bamazon customer experience</a>
 <a href="https://drive.google.com/file/d/1iSceqCpg2haD6mx42Uo8BYuL0psCE1UJ/view">
-<img src="https://raw.githubusercontent.com/bnkfick/bamazon/master/bamazonCustomer.png" alt="bamazon customer"</a>
+<img src="https://raw.githubusercontent.com/bnkfick/bamazon/master/bamazonCustomer.png" alt="bamazon customer"></a>
 <br/>
 
 
@@ -41,7 +41,7 @@
 
 
 <a href="https://drive.google.com/file/d/1jecS6xu2zlP7bnM2wnupIP1Ghf7cSHqB/view">Click to see the bamazon manager app at work</a>
-<img src="https://raw.githubusercontent.com/bnkfick/bamazon/master/bamazonManager.png" alt="bamazon manager"</a>
+<img src="https://raw.githubusercontent.com/bnkfick/bamazon/master/bamazonManager.png" alt="bamazon manager"></a>
 <br/>
 
 
@@ -55,7 +55,7 @@
         * allow the supervisor to add a new department and overhead costs
 
 <a href="https://drive.google.com/file/d/1pesM1MQJLe4n8e20QEV48GiPPZvcH2gI/view">Click to see the bamazon supervisor app at work</a>
-<img src="https://raw.githubusercontent.com/bnkfick/bamazon/master/bamazonSupervisor.png" alt="bamazon supervisor"</a>
+<img src="https://raw.githubusercontent.com/bnkfick/bamazon/master/bamazonSupervisor.png" alt="bamazon supervisor"></a>
 <br/>
 
 
